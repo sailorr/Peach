@@ -24,7 +24,6 @@ public abstract class WebBaseActivity extends BaseActivity {
     public void init() {
         mTitleTabView = findViewById(R.id.title_tab);
         mViewPager = findViewById(R.id.webBase_pager);
-
         mViewPager.setAdapter(initAdapter());
         mTitleTabView.mTextView.setText(setTitle());
         mTitleTabView.mLayout.setupWithViewPager(mViewPager);

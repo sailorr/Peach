@@ -1,14 +1,13 @@
 package com.example.peach.fragment;
 
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.peach.R;
 import com.example.peach.activity.FiveOneActivity;
+import com.example.peach.activity.LinMeiMeiActivity;
 import com.example.peach.adapter.HomeRVAdapter;
 import com.example.peach.base.BaseFragment;
 
@@ -35,23 +34,11 @@ public class ResourceFrag extends BaseFragment {
     }
 
 
-    @Override
-    public void doBusiness() {
-        mRVAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                switch (position) {
-                    case 0:
-                        FiveOneActivity.start(getActivity());
-                }
-            }
-        });
-    }
 
     @Override
     protected void init(View view) {
+        mListWeb.add("林妹妹");
         mListWeb.add("51");
-        mListWeb.add("花瓣");
         mListWeb.add("煎蛋");
         mListWeb.add("豆瓣");
         mListWeb.add("美图");
@@ -59,6 +46,20 @@ public class ResourceFrag extends BaseFragment {
         mRVAdapter = new HomeRVAdapter(mListWeb);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mRecyclerView.setAdapter(mRVAdapter);
+
+        mRVAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (position) {
+                    case 0:
+                        LinMeiMeiActivity.start(getActivity());
+                        break;
+                    case 1:
+                        FiveOneActivity.start(getActivity());
+                        break;
+                }
+            }
+        });
 
     }
 }

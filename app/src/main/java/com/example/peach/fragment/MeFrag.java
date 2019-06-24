@@ -22,11 +22,6 @@ public class MeFrag extends BaseFragment {
 
 
     @Override
-    public void doBusiness() {
-
-    }
-
-    @Override
     protected void init(View view) {
 
     }

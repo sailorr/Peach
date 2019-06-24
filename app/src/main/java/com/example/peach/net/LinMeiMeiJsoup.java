@@ -18,7 +18,7 @@ import java.util.List;
  * @author Administrator on2019/6/10 15:33
  * @desc
  */
-public class JsoupUtil {
+public class LinMeiMeiJsoup {
 
 
     public static void get(final String url, int count, final ResponsCallBack callBack) {
@@ -42,7 +42,7 @@ public class JsoupUtil {
                             itemBean.setTitle(title);
                             itemBeans.add(itemBean);
                         }
-                        Log.d("JsoupUtil", "run: " + "title:" + title + " detail:" + detail + " src:" + src);
+                        Log.e("TestTag", "LinMeiMeiJsoup-run: itemBeans size"+itemBeans.size()+" itemBean"+itemBeans.get(0).toString());
                     }
                     callBack.success(itemBeans);
                 } catch (IOException e) {

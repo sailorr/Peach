@@ -11,13 +11,12 @@ import java.util.List;
  * @author Administrator on2019/6/10 11:46
  * @desc
  */
-public class FiveOnePagerAdapter extends FragmentPagerAdapter {
+public class LinMeiMeiPagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> mList;
-    private String[] mStrings = {"ROSI","少妇","肥臀","蕾丝","芦苞","美媛馆","美臀","童颜巨乳",
-            "诱惑","湿身","性感","潘娇娇"};
+    private String[] mStrings = {"翘臀", "大奶", "美腿","美乳","浴室","湿身","少妇","爆乳","萝莉","高跟鞋","丝袜","美腿","旗袍","女仆","丁字裤","学生妹"};
 
-    public FiveOnePagerAdapter(FragmentManager fm, List<Fragment> fragmentList) {
+    public LinMeiMeiPagerAdapter(FragmentManager fm, List<Fragment> fragmentList) {
         super(fm);
         this.mList = fragmentList;
     }

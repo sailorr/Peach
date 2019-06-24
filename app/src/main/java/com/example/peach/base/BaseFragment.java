@@ -53,10 +53,8 @@ public abstract class BaseFragment extends Fragment {
         isViewPrepared = true;
         init(view);
         lazyLoad();
-        doBusiness();
     }
 
-    protected abstract void doBusiness();
 
     protected abstract void init(View view);
 

@@ -1,7 +1,6 @@
 package com.example.peach.adapter;
 
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,7 +11,6 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.peach.ImageItemBean;
 import com.example.peach.R;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -32,7 +30,6 @@ public class CommonRVAdapter extends BaseQuickAdapter<ImageItemBean, BaseViewHol
 
     @Override
     protected void convert(BaseViewHolder helper, ImageItemBean item) {
-        Log.e("TestTag", "CommonRVAdapter-convert: " + item);
         ViewGroup.LayoutParams params = helper.itemView.getLayoutParams();
         params.height = 800 + new Random().nextInt(400);
         helper.itemView.setLayoutParams(params);
