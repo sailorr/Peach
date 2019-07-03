@@ -1,7 +1,5 @@
 package com.example.peach.net;
 
-import android.util.Log;
-
 import com.example.peach.ImageItemBean;
 import com.example.peach.contant.LinMeiMeiUrl;
 
@@ -42,7 +40,6 @@ public class LinMeiMeiJsoup {
                             itemBean.setTitle(title);
                             itemBeans.add(itemBean);
                         }
-                        Log.e("TestTag", "LinMeiMeiJsoup-run: itemBeans size"+itemBeans.size()+" itemBean"+itemBeans.get(0).toString());
                     }
                     callBack.success(itemBeans);
                 } catch (IOException e) {

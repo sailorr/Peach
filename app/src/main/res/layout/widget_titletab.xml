@@ -11,6 +11,7 @@
         android:id="@+id/titleTab_tv_title"
         android:textSize="16sp"
         android:gravity="center"
+        android:textColor="@color/colorAccent"
         android:layout_width="50dp"
         android:layout_height="match_parent" />
 
@@ -18,7 +19,7 @@
         android:id="@+id/titleTab_tab"
         android:layout_width="0dp"
         app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabSelectedTextColor="#fff"
         app:layout_constraintLeft_toRightOf="@id/titleTab_tv_title"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_height="match_parent"/>

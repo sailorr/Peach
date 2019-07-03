@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.peach.ImageItemBean;
@@ -36,7 +37,7 @@ public class CommonRVAdapter extends BaseQuickAdapter<ImageItemBean, BaseViewHol
         mImageView = helper.itemView.findViewById(R.id.ivGirlImage);
         mTextView = helper.itemView.findViewById(R.id.tvImageTitle);
         mTextView.setText(item.getTitle());
-        Glide.with(helper.itemView).load(item.getImgUrl()).into(mImageView);
+        Glide.with(helper.itemView).load(item.getImgUrl()).apply(new RequestOptions().placeholder(R.drawable.ic_beauty)).into(mImageView);
     }
 
     public void replaceData(List<ImageItemBean> data) {

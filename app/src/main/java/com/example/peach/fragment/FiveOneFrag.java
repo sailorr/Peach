@@ -28,6 +28,7 @@ public class FiveOneFrag extends CommonFrag {
 
     @Override
     protected void doNetWork(Boolean isLoadMore) {
+        showLoadingDialog();
         if (isLoadMore) {
             pageCount++;
         }
@@ -38,6 +39,7 @@ public class FiveOneFrag extends CommonFrag {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        hideLoadingDialog();
                         mRefreshLayout.setRefreshing(false);
                         mRVAdapter.replaceData(data);
                     }

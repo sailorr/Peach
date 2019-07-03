@@ -6,13 +6,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Window;
 import android.widget.Toast;
 
 import com.example.peach.widget.LoadingDialog;
-
-import java.util.Objects;
 
 
 public abstract class BaseActivity extends AppCompatActivity implements IBaseView {
@@ -26,7 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Objects.requireNonNull(getSupportActionBar()).hide();
+
         initBaseView();
         setContentView(getLayoutResId());
         init();
@@ -42,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
                         Toast.makeText(getBaseContext(), "请求超时！", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .showTime(10000)
+                .showTime(20000)
                 .build();
     }
 

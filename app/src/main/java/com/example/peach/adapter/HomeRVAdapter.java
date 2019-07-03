@@ -3,6 +3,7 @@ package com.example.peach.adapter;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -28,7 +29,6 @@ public class HomeRVAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
     protected void convert(BaseViewHolder helper, String item) {
         Log.d("HomeRVAdapter", "convert: ");
 
-        TextView title = helper.itemView.findViewById(R.id.item_tv_title);
-        title.setText(item);
+        helper.setText(R.id.item_tv_title,item);
     }
 }

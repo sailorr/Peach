@@ -7,9 +7,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.peach.widget.LoadingDialog;
 
@@ -32,11 +34,7 @@ public abstract class BaseFragment extends Fragment {
      * 是否已经加载数据
      */
     protected boolean isDataLoaded;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    
 
     @Nullable
     @Override
@@ -51,8 +49,23 @@ public abstract class BaseFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         isViewPrepared = true;
+        initBaseView();
         init(view);
         lazyLoad();
+    }
+
+
+    public void initBaseView() {
+        mLoadingDialog = new LoadingDialog.Builder(getContext())
+                .setMessage("加载中...")
+                .setLoadingCallBack(new LoadingDialog.LoadingCallback() {
+                    @Override
+                    public void onTimeOut() {
+                        Toast.makeText(getContext(), "请求超时！", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .showTime(20000)
+                .build();
     }
 
 

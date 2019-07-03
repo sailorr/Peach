@@ -2,6 +2,7 @@ package com.example.peach.fragment;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -50,6 +51,7 @@ public class ResourceFrag extends BaseFragment {
         mRVAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Log.e("TestTag", "ResourceFrag-onItemClick: "+position);
                 switch (position) {
                     case 0:
                         LinMeiMeiActivity.start(getActivity());
