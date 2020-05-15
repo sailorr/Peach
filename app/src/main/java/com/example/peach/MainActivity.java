@@ -8,6 +8,7 @@ import com.example.peach.adapter.PagerAdapter;
 import com.example.peach.base.BaseActivity;
 import com.example.peach.fragment.MeFrag;
 import com.example.peach.fragment.ResourceFrag;
+import com.sailor.net.retrofit.RetrofitManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void init() {
-
         ResourceFrag resourceFrag = new ResourceFrag();
         MeFrag meFrag = new MeFrag();
         mList.add(resourceFrag);

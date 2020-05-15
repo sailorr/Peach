@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.peach.R;
 import com.example.peach.activity.FiveOneActivity;
 import com.example.peach.activity.LinMeiMeiActivity;
+import com.example.peach.activity.MyImageActivity;
 import com.example.peach.adapter.HomeRVAdapter;
 import com.example.peach.base.BaseFragment;
 
@@ -43,6 +44,7 @@ public class ResourceFrag extends BaseFragment {
         mListWeb.add("煎蛋");
         mListWeb.add("豆瓣");
         mListWeb.add("美图");
+        mListWeb.add("后台");
         mRecyclerView = view.findViewById(R.id.rv_home);
         mRVAdapter = new HomeRVAdapter(mListWeb);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
@@ -58,6 +60,9 @@ public class ResourceFrag extends BaseFragment {
                         break;
                     case 1:
                         FiveOneActivity.start(getActivity());
+                        break;
+                    case 5:
+                        MyImageActivity.start(getActivity());
                         break;
                 }
             }

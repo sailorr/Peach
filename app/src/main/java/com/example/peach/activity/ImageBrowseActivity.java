@@ -19,10 +19,10 @@ import com.example.peach.net.FiveoneDetailJsoup;
 import java.util.ArrayList;
 
 public class ImageBrowseActivity extends BaseActivity implements BigImageCallBack {
-    private ViewPager mPager;
-    private ArrayList<String> mUrls = new ArrayList<>();
+    public ViewPager mPager;
+    public ArrayList<String> mUrls = new ArrayList<>();
     private String url;
-    private MeiziPagerAdapter mAdapter;
+    public MeiziPagerAdapter mAdapter;
 
 
     @Override
@@ -68,7 +68,7 @@ public class ImageBrowseActivity extends BaseActivity implements BigImageCallBac
         });
     }
 
-    private class MeiziPagerAdapter extends FragmentStatePagerAdapter {
+    public class MeiziPagerAdapter extends FragmentStatePagerAdapter {
 
         public MeiziPagerAdapter(FragmentManager fm) {
             super(fm);

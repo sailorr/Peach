@@ -47,4 +47,5 @@ public class CommonRVAdapter extends BaseQuickAdapter<ImageItemBean, BaseViewHol
         }
         this.notifyDataSetChanged();
     }
+
 }

@@ -27,6 +27,7 @@ public abstract class CommonFrag extends BaseFragment {
     private List<ImageItemBean> mBeanList = new ArrayList<>();
 
     public String url;
+    public int type;
     private String name;
 
     @Override
