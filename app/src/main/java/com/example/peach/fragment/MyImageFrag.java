@@ -10,7 +10,6 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.peach.ImageItemBean;
 import com.example.peach.R;
-import com.example.peach.activity.ImageBrowseActivity;
 import com.example.peach.activity.MyImageBrowseActivity;
 import com.example.peach.adapter.CommonRVAdapter;
 import com.example.peach.base.BaseFragment;
@@ -21,6 +20,7 @@ import com.sailor.net.retrofit.RetrofitManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -31,7 +31,7 @@ import io.reactivex.schedulers.Schedulers;
  * @desc
  */
 public class MyImageFrag extends BaseFragment {
-    private int pageCount=1;
+    private int pageCount = 1;
     private RecyclerView mRecyclerView;
     public SwipeRefreshLayout mRefreshLayout;
     public CommonRVAdapter mRVAdapter;
@@ -39,7 +39,7 @@ public class MyImageFrag extends BaseFragment {
 
     public int type;
 
-    public static MyImageFrag newInstance(int type ) {
+    public static MyImageFrag newInstance(int type) {
         Bundle bundle = new Bundle();
         bundle.putInt("type", type);
         MyImageFrag frag = new MyImageFrag();
@@ -50,8 +50,10 @@ public class MyImageFrag extends BaseFragment {
 
     @Override
     protected int getLayoutResId() {
-         return R.layout.frag_common_main;
+        return R.layout.frag_common_main;
     }
+
+    final Random random = new Random();
 
     @Override
     protected void init(View view) {
@@ -62,49 +64,68 @@ public class MyImageFrag extends BaseFragment {
         mRVAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         mRecyclerView.setAdapter(mRVAdapter);
+
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                doNetWork(1);
+                currentPage=1;
+                doNetWork(true, getPage());
             }
         });
 
         mRVAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
-                pageCount++;
-                doNetWork(pageCount);
+                currentPage++;
+                doNetWork(false, currentPage);
             }
         }, mRecyclerView);
         mRVAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Log.w("Test", "onItemClick: suitId--->"+mBeanList.get(position).getDetailUrl());
-                MyImageBrowseActivity.start(getContext(),mBeanList.get(position).getDetailUrl());
+                Log.w("Test", "onItemClick: suitId--->" + mBeanList.get(position).getDetailUrl());
+                MyImageBrowseActivity.start(getContext(), mBeanList.get(position).getDetailUrl());
             }
         });
     }
 
-    @Override
-    protected void onLazyLoad() {
-        doNetWork(1);
+    private int currentPage = 1;
+
+    public int getPage() {
+        if (totalPage > 1) {
+            currentPage = random.nextInt(totalPage / 10 - 1) + 1;
+            return currentPage;
+        }
+        return currentPage;
     }
 
-    private void doNetWork(int pageCount){
-        Log.d("MyImageFrag", "doNetWork: ");
+    @Override
+    protected void onLazyLoad() {
+        doNetWork(true, 1);
+    }
+
+    private int totalPage;
+
+    private void doNetWork(final boolean clear, int pageCount) {
+        Log.d("MyImageFrag", "doNetWork: pageCount-->" + pageCount);
         hideLoadingDialog();
         RetrofitManager.getInstance().getServer(Api.class)
-                .getSuit(pageCount,type)
+                .getSuit(pageCount, type)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<SuitResp>() {
                     @Override
                     public void accept(SuitResp suitResp) throws Exception {
+                        totalPage = suitResp.getData().getTotal();
+                        Log.d("MyImageFrag", "accept: " + totalPage);
+                        if (clear){
+                            mBeanList.clear();
+                        }
                         mBeanList.addAll(convert(suitResp.getData().getList()));
                         mRVAdapter.notifyDataSetChanged();
-                        if (suitResp.getData().isIsLastPage()){
+                        if (suitResp.getData().isIsLastPage()) {
                             mRVAdapter.loadMoreEnd();
-                        }else {
+                        } else {
                             mRVAdapter.loadMoreComplete();
                         }
                         mRefreshLayout.setRefreshing(false);
@@ -112,9 +133,9 @@ public class MyImageFrag extends BaseFragment {
                 });
     }
 
-    private List<ImageItemBean> convert(List<SuitBean> suitBeans){
+    private List<ImageItemBean> convert(List<SuitBean> suitBeans) {
         List<ImageItemBean> imageItemBeans = new ArrayList<>();
-        for (int i = 0; i <suitBeans.size() ; i++) {
+        for (int i = 0; i < suitBeans.size(); i++) {
             ImageItemBean imageItemBean = new ImageItemBean();
             SuitBean suitBean = suitBeans.get(i);
             imageItemBean.setDetailUrl(String.valueOf(suitBean.getId()));
