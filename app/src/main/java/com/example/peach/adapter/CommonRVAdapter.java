@@ -48,4 +48,11 @@ public class CommonRVAdapter extends BaseQuickAdapter<ImageItemBean, BaseViewHol
         this.notifyDataSetChanged();
     }
 
+
+    public void addData(List<ImageItemBean> data) {
+        this.mBeanList.addAll(data);
+        this.notifyDataSetChanged();
+    }
+
+
 }

@@ -15,7 +15,8 @@ import java.util.concurrent.Future;
 
 /**
  * @author Administrator on2019/7/2 15:41
- * @desc
+ * @desc 51 套图详情
+ *       批量获取套图大图地址
  */
 public class FiveoneDetailJsoup {
 

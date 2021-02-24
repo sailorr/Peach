@@ -23,7 +23,6 @@ public class MyImageActivity extends WebBaseActivity {
 
     @Override
     public void init() {
-        mList.add(MyImageFrag.newInstance(1));
         mList.add(MyImageFrag.newInstance(2));
         myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), mList);
         super.init();

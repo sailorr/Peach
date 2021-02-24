@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.peach.adapter.FiveOnePagerAdapter;
-import com.example.peach.adapter.LinMeiMeiPagerAdapter;
 import com.example.peach.base.WebBaseActivity;
 import com.example.peach.contant.FiveOneUrl;
 import com.example.peach.fragment.FiveOneFrag;

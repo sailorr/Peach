@@ -14,7 +14,7 @@ import java.util.List;
 public class MyPagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> mList;
-    private String[] mStrings = {"壁纸","美图"};
+    private String[] mStrings = {"美图"};
 
     public MyPagerAdapter(FragmentManager fm, List<Fragment> fragmentList) {
         super(fm);

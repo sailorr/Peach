@@ -14,9 +14,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.ImageBrowseActivity"></activity>
         <activity
-            android:name=".activity.FiveOneActivity"
-            android:label="@string/title_activity_five_one"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".activity.FiveOneActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

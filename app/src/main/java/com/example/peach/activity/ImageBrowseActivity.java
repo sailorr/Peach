@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.peach.R;
@@ -27,8 +26,7 @@ public class ImageBrowseActivity extends BaseActivity implements BigImageCallBac
 
     @Override
     public int getLayoutResId() {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);//remove title bar  即隐藏标题栏
-        getSupportActionBar().hide();// 隐藏ActionBar
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//remove notification bar  即全屏
         return R.layout.activity_image_browse;
     }
@@ -38,7 +36,7 @@ public class ImageBrowseActivity extends BaseActivity implements BigImageCallBac
         mPager = findViewById(R.id.pager);
         url = getIntent().getStringExtra("url");
         mAdapter = new MeiziPagerAdapter(getSupportFragmentManager());
-        mPager.setOffscreenPageLimit(5);
+        mPager.setOffscreenPageLimit(8);
         mPager.setAdapter(mAdapter);
     }
 

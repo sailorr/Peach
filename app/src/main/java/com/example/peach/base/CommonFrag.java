@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,7 +19,7 @@ import java.util.List;
 
 /**
  * @author Administrator on2019/6/10 14:31
- * @desc
+ * @desc 不同网站公共套图列表
  */
 public abstract class CommonFrag extends BaseFragment {
     private RecyclerView mRecyclerView;
@@ -48,6 +49,7 @@ public abstract class CommonFrag extends BaseFragment {
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                showLoadingDialog();
                 doNetWork(false);
             }
         });
@@ -55,6 +57,7 @@ public abstract class CommonFrag extends BaseFragment {
         mRVAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
+                showLoadingDialog();
                 doNetWork(true);
             }
         }, mRecyclerView);
@@ -68,6 +71,8 @@ public abstract class CommonFrag extends BaseFragment {
 
     @Override
     protected void onLazyLoad() {
+        Log.w("Test", "onLazyLoad: target url---》"+url);
+        showLoadingDialog();
         doNetWork(false);
     }
 

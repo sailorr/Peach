@@ -1,5 +1,7 @@
 package com.example.peach.net;
 
+import android.util.Log;
+
 import com.example.peach.ImageItemBean;
 import com.example.peach.contant.LinMeiMeiUrl;
 
@@ -19,7 +21,7 @@ import java.util.List;
 public class LinMeiMeiJsoup {
 
 
-    public static void get(final String url, int count, final ResponsCallBack callBack) {
+    public static void get(final String url,final ResponsCallBack callBack) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -41,6 +43,7 @@ public class LinMeiMeiJsoup {
                             itemBeans.add(itemBean);
                         }
                     }
+                    Log.w("Test", String.format("套图数目：%s，列表：%s",itemBeans.size(),itemBeans));
                     callBack.success(itemBeans);
                 } catch (IOException e) {
                     callBack.fail(e);

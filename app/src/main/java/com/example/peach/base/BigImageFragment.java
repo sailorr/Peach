@@ -6,8 +6,10 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.peach.R;
+import com.example.peach.util.GlideUtil;
 import com.example.peach.widget.PhotoImageView;
 
 /**
@@ -36,10 +38,7 @@ public class BigImageFragment extends BaseFragment {
         mImageView = view.findViewById(R.id.photo_img);
         url = getArguments().getString("url");
         Log.e("TestTag", "BigImageFragment-init: "+url);
-        Glide.with(getContext()).load(url)
-                .apply(new RequestOptions().placeholder(R.drawable.ic_beauty))
-
-                .into(mImageView);
+        GlideUtil.INSTANCE.load(url,mImageView);
     }
 
     @Override

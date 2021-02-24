@@ -22,6 +22,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);//remove title bar  即隐藏标题栏
+        getSupportActionBar().hide();// 隐藏ActionBar
         super.onCreate(savedInstanceState);
 
         initBaseView();

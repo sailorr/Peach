@@ -3,6 +3,7 @@ package com.example.peach.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.peach.net.Api;
 import com.example.peach.pojo.ImageResp;
@@ -43,7 +44,7 @@ public class MyImageBrowseActivity extends ImageBrowseActivity {
                             ImageBean imageBean = imageResp.getData().get(i);
                             mUrls.add(imageBean.getImg_url());
                         }
-                        Log.w("Test", "accept: MyImageBrowseActivity-->"+mUrls.toString());
+                        Toast.makeText(getBaseContext(),"数量:"+mUrls.size(),1).show();
                         mAdapter.notifyDataSetChanged();
                         hideLoadingDialog();
                     }
